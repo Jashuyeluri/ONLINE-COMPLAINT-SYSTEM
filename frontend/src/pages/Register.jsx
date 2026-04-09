@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
-import { User, Mail, Lock, UserPlus, AlertCircle, Wrench } from 'lucide-react';
+import { User, Mail, Lock, UserPlus, AlertCircle, Wrench, Shield } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const Register = () => {
@@ -93,32 +93,36 @@ const Register = () => {
               {/* Role Selection */}
               <div>
                 <label className="block text-sm font-bold text-slate-700 mb-2 ml-1">Register As</label>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-3 gap-3">
                   <button type="button"
                     onClick={() => setFormData({ ...formData, role: 'user' })}
-                    className={`flex items-center gap-2 p-4 rounded-2xl border-2 transition-all ${
+                    className={`flex flex-col items-center justify-center p-3 rounded-2xl border-2 transition-all ${
                       formData.role === 'user'
                         ? 'border-indigo-500 bg-indigo-50 text-indigo-700'
                         : 'border-slate-100 text-slate-500 hover:border-slate-200'
                     }`}>
-                    <User className="w-5 h-5" />
-                    <div className="text-left">
-                      <p className="text-sm font-bold">Citizen</p>
-                      <p className="text-[10px] opacity-60">File complaints</p>
-                    </div>
+                    <User className="w-5 h-5 mb-1" />
+                    <span className="text-sm font-bold">Citizen</span>
                   </button>
                   <button type="button"
                     onClick={() => setFormData({ ...formData, role: 'staff' })}
-                    className={`flex items-center gap-2 p-4 rounded-2xl border-2 transition-all ${
+                    className={`flex flex-col items-center justify-center p-3 rounded-2xl border-2 transition-all ${
                       formData.role === 'staff'
                         ? 'border-teal-500 bg-teal-50 text-teal-700'
                         : 'border-slate-100 text-slate-500 hover:border-slate-200'
                     }`}>
-                    <Wrench className="w-5 h-5" />
-                    <div className="text-left">
-                      <p className="text-sm font-bold">Staff</p>
-                      <p className="text-[10px] opacity-60">Work on complaints</p>
-                    </div>
+                    <Wrench className="w-5 h-5 mb-1" />
+                    <span className="text-sm font-bold">Staff</span>
+                  </button>
+                  <button type="button"
+                    onClick={() => setFormData({ ...formData, role: 'admin' })}
+                    className={`flex flex-col items-center justify-center p-3 rounded-2xl border-2 transition-all ${
+                      formData.role === 'admin'
+                        ? 'border-rose-500 bg-rose-50 text-rose-700'
+                        : 'border-slate-100 text-slate-500 hover:border-slate-200'
+                    }`}>
+                    <Shield className="w-5 h-5 mb-1" />
+                    <span className="text-sm font-bold">Admin</span>
                   </button>
                 </div>
               </div>

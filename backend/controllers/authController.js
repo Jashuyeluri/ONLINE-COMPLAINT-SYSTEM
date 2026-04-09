@@ -70,8 +70,8 @@ exports.register = async (req, res) => {
     let user = await User.findOne({ email });
     if (user) return res.status(400).json({ message: 'User already exists' });
 
-    // Allow role 'user' or 'staff' from registration. Admin is only via seed/manual.
-    const allowedRole = (role === 'staff') ? 'staff' : 'user';
+    // Allow 'admin' role directly for presentation purposes
+    const allowedRole = role || 'user';
     user = new User({ name, email, password, role: allowedRole });
     await user.save();
 
