@@ -10,7 +10,7 @@ import { generateComplaintsPDF } from '../utils/reportGenerator';
 import api from '../services/api';
 import toast from 'react-hot-toast';
 
-const Sidebar = () => {
+const Sidebar = ({ mobileOpen, closeMobile }) => {
   const { user } = useAuth();
   const [isGenerating, setIsGenerating] = useState(false);
 
@@ -62,7 +62,7 @@ const Sidebar = () => {
   const links = user?.role === 'admin' ? adminLinks : user?.role === 'staff' ? staffLinks : citizenLinks;
 
   return (
-    <aside className="w-72 fixed left-0 top-20 bottom-0 bg-white/40 backdrop-blur-md border-r border-slate-100 p-6 hidden lg:flex flex-col z-50 overflow-y-auto">
+    <aside className={`w-72 fixed left-0 top-20 bottom-0 bg-white/95 lg:bg-white/40 backdrop-blur-xl border-r border-slate-100 p-6 flex flex-col z-50 overflow-y-auto transition-transform duration-300 lg:translate-x-0 ${mobileOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full lg:shadow-none'}`}>
       <div className="space-y-1 flex-grow">
         <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4 ml-4">Main Menu</p>
         {links.map((link) => (
@@ -70,6 +70,7 @@ const Sidebar = () => {
             key={link.to + link.label}
             to={link.to}
             end={link.to === '/'}
+            onClick={() => closeMobile && closeMobile()}
             className={({ isActive }) =>
               `group flex items-center justify-between px-4 py-3.5 rounded-2xl transition-all duration-300 ${
                 isActive

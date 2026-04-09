@@ -30,17 +30,20 @@ const ProtectedRoute = ({ children, adminOnly = false, staffOnly = false }) => {
   return children;
 };
 
-const Layout = ({ children }) => (
-  <div className="min-h-screen bg-gray-50">
-    <Navbar />
-    <div className="flex">
-      <Sidebar />
-      <main className="flex-1 p-6 md:p-10 max-w-7xl mx-auto">
-        {children}
-      </main>
+const Layout = ({ children }) => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <Navbar onMenuClick={() => setMobileMenuOpen(!mobileMenuOpen)} />
+      <div className="flex">
+        <Sidebar mobileOpen={mobileMenuOpen} closeMobile={() => setMobileMenuOpen(false)} />
+        <main className="flex-1 w-full">
+          {children}
+        </main>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 function App() {
   const [showSplash, setShowSplash] = useState(

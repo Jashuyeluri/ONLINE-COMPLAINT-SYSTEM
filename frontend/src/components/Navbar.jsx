@@ -2,10 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useSearch } from '../context/SearchContext';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, Bell, Search, Hexagon, CheckCheck, X } from 'lucide-react';
+import { LogOut, Bell, Search, Hexagon, CheckCheck, X, Menu } from 'lucide-react';
 import api from '../services/api';
 
-const Navbar = () => {
+const Navbar = ({ onMenuClick }) => {
   const { user, logout } = useAuth();
   const { globalSearch, setGlobalSearch } = useSearch();
   const navigate = useNavigate();
@@ -83,14 +83,19 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="glass-morphism fixed top-0 left-0 right-0 z-[60] px-6 py-4 flex justify-between items-center h-20">
+    <nav className="glass-morphism fixed top-0 left-0 right-0 z-[60] px-4 md:px-6 py-4 flex justify-between items-center h-20">
       <div className="flex items-center gap-3">
-        <div className="bg-indigo-600 w-10 h-10 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-100">
-          <Hexagon className="text-white w-6 h-6 fill-white/20" />
+        {user && (
+          <button onClick={onMenuClick} className="p-2 -ml-2 lg:hidden text-slate-500 hover:text-indigo-600">
+            <Menu className="w-6 h-6" />
+          </button>
+        )}
+        <div className="bg-indigo-600 w-9 h-9 md:w-10 md:h-10 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-100">
+          <Hexagon className="text-white w-5 h-5 md:w-6 md:h-6 fill-white/20" />
         </div>
         <div>
-          <span className="font-extrabold text-xl text-slate-900 tracking-tight block leading-none">RESOLVE</span>
-          <span className="text-[10px] font-bold text-indigo-600 uppercase tracking-[0.2em]">City Portal</span>
+          <span className="font-extrabold text-lg md:text-xl text-slate-900 tracking-tight block leading-none">RESOLVE</span>
+          <span className="text-[9px] md:text-[10px] font-bold text-indigo-600 uppercase tracking-[0.2em]">City Portal</span>
         </div>
       </div>
 
