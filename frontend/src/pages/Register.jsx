@@ -54,7 +54,6 @@ const Register = () => {
                   <User className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-500 transition-colors" />
                   <input
                     type="text"
-                    placeholder="John Doe"
                     required
                     className="input-field pl-12"
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -68,7 +67,6 @@ const Register = () => {
                   <Mail className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-500 transition-colors" />
                   <input
                     type="email"
-                    placeholder="john@example.com"
                     required
                     className="input-field pl-12"
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -82,7 +80,6 @@ const Register = () => {
                   <Lock className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-500 transition-colors" />
                   <input
                     type="password"
-                    placeholder="Create a strong password"
                     required
                     className="input-field pl-12"
                     onChange={(e) => setFormData({ ...formData, password: e.target.value })}
