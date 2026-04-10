@@ -119,7 +119,7 @@ const AdminPanel = () => {
         </div>
         <button 
           onClick={handleExport}
-          className="bg-slate-900 hover:bg-black text-white py-3.5 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all shadow-xl shadow-slate-200 text-sm"
+          className="bg-indigo-600 hover:bg-indigo-700 text-white py-3.5 px-6 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all shadow-xl shadow-indigo-200 text-sm"
         >
           <Download className="w-4 h-4" />
           Export PDF
