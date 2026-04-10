@@ -7,5 +7,6 @@ router.post('/register', register);
 router.post('/login', login);
 router.get('/users', auth, admin, getAllUsers);
 router.get('/staff', auth, admin, getAllStaff);
+router.put('/profile', auth, require('../controllers/authController').updateProfile);
 
 module.exports = router;

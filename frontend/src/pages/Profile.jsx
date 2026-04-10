@@ -2,16 +2,24 @@ import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { User, Mail, Shield, Save, Key, CheckCircle } from 'lucide-react';
 import toast from 'react-hot-toast';
+import api from '../services/api';
 
 const Profile = () => {
-  const { user } = useAuth();
+  const { user, login } = useAuth();
   const [saved, setSaved] = useState(false);
+  const [formData, setFormData] = useState({ name: user?.name || '', email: user?.email || '' });
 
-  const handleSave = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
-    setSaved(true);
-    toast.success('Profile info noted! (Backend persistence coming soon)');
-    setTimeout(() => setSaved(false), 3000);
+    try {
+      const res = await api.put('/auth/profile', formData);
+      login(res.data.token, res.data.user);
+      setSaved(true);
+      toast.success('Profile updated successfully!');
+      setTimeout(() => setSaved(false), 3000);
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Failed to update profile');
+    }
   };
 
   return (
@@ -50,14 +58,14 @@ const Profile = () => {
             <label className="block text-sm font-bold text-slate-700 mb-2">Full Name</label>
             <div className="relative">
               <User className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
-              <input type="text" defaultValue={user?.name} className="w-full pl-12 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 font-medium text-slate-700 transition-all" />
+              <input type="text" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} className="w-full pl-12 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 font-medium text-slate-700 transition-all" />
             </div>
           </div>
           <div>
             <label className="block text-sm font-bold text-slate-700 mb-2">Email Address</label>
             <div className="relative">
               <Mail className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
-              <input type="email" defaultValue={user?.email} className="w-full pl-12 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 font-medium text-slate-700 transition-all" />
+              <input type="email" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} className="w-full pl-12 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 font-medium text-slate-700 transition-all" />
             </div>
           </div>
           <div>

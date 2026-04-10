@@ -97,3 +97,27 @@ exports.login = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+exports.updateProfile = async (req, res) => {
+  try {
+    const { name, email } = req.body;
+    let user = await require('../models/User').findById(req.user.id);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    if (email && email !== user.email) {
+      if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/i.test(email)) return res.status(400).json({ message: 'Invalid email format' });
+      const exists = await require('../models/User').findOne({ email });
+      if (exists) return res.status(400).json({ message: 'Email already taken' });
+      user.email = email;
+    }
+    if (name) user.name = name;
+    await user.save();
+
+    const payload = { user: { id: user.id, role: user.role } };
+    const jwt = require('jsonwebtoken');
+    const token = jwt.sign(payload, process.env.JWT_SECRET || 'supersecretjwtkey_12345', { expiresIn: '1d' });
+    res.json({ token, user: { id: user._id, name: user.name, email: user.email, role: user.role } });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
