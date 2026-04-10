@@ -33,13 +33,15 @@ const ProtectedRoute = ({ children, adminOnly = false, staffOnly = false }) => {
 const Layout = ({ children }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       <Navbar onMenuClick={() => setMobileMenuOpen(!mobileMenuOpen)} />
-      <div className="flex">
+      <div className="flex flex-1 relative">
         <Sidebar mobileOpen={mobileMenuOpen} closeMobile={() => setMobileMenuOpen(false)} />
-        <main className="flex-1 w-full">
-          {children}
-        </main>
+        <div className="flex-1 lg:ml-72">
+          <main className="w-full max-w-6xl mx-auto px-6 md:px-10 pt-28 pb-20 fade-in-up">
+            {children}
+          </main>
+        </div>
       </div>
     </div>
   );

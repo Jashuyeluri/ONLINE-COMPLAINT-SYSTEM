@@ -38,7 +38,7 @@ const UserManagement = () => {
   const totalComplaints = users.reduce((sum, u) => sum + u.total, 0);
 
   return (
-    <div className="space-y-8 animate-fade-in lg:ml-72 pt-24 pb-20 px-8">
+    <div className="space-y-8 animate-fade-in ">
       <header>
         <div className="flex items-center gap-2 mb-2">
           <span className="w-8 h-[2px] bg-indigo-600" />
@@ -108,12 +108,12 @@ const UserManagement = () => {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="border-b border-slate-50 bg-slate-50/50">
-                <th className="px-8 py-5 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">User</th>
-                <th className="px-8 py-5 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Role</th>
-                <th className="px-8 py-5 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Total Filed</th>
-                <th className="px-8 py-5 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Pending</th>
-                <th className="px-8 py-5 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Resolved</th>
-                <th className="px-8 py-5 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Rate</th>
+                <th className="py-5 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">User</th>
+                <th className="py-5 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Role</th>
+                <th className="py-5 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Total Filed</th>
+                <th className="py-5 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Pending</th>
+                <th className="py-5 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Resolved</th>
+                <th className="py-5 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Rate</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-50 font-medium">
@@ -124,7 +124,7 @@ const UserManagement = () => {
               ) : (
                 filtered.map(u => (
                   <tr key={u._id} className="hover:bg-indigo-50/30 transition-colors group">
-                    <td className="px-8 py-5">
+                    <td className="py-5">
                       <div className="flex items-center gap-3">
                         <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm ${
                           u.role === 'admin'
@@ -141,7 +141,7 @@ const UserManagement = () => {
                         </div>
                       </div>
                     </td>
-                    <td className="px-8 py-5">
+                    <td className="py-5">
                       <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-xl text-[11px] font-black border ${
                         u.role === 'admin'
                           ? 'bg-violet-50 text-violet-700 border-violet-200'
@@ -154,19 +154,19 @@ const UserManagement = () => {
                       </span>
                     </td>
                     {u.role === 'admin' ? (
-                      <td colSpan={4} className="px-8 py-5">
+                      <td colSpan={4} className="py-5">
                         <span className="text-[11px] font-bold text-slate-300 uppercase tracking-widest italic">System Administration Account</span>
                       </td>
                     ) : (
                       <>
-                        <td className="px-8 py-5 font-black text-slate-900">{u.total}</td>
-                        <td className="px-8 py-5">
+                        <td className="py-5 font-black text-slate-900">{u.total}</td>
+                        <td className="py-5">
                           <span className="text-amber-600 font-black">{u.pending}</span>
                         </td>
-                        <td className="px-8 py-5">
+                        <td className="py-5">
                           <span className="text-emerald-600 font-black">{u.resolved}</span>
                         </td>
-                        <td className="px-8 py-5">
+                        <td className="py-5">
                           <div className="flex items-center gap-2">
                             <div className="w-16 bg-slate-100 rounded-full h-2 overflow-hidden">
                               <div className="h-full bg-emerald-500 rounded-full" style={{ width: `${u.total > 0 ? (u.resolved / u.total) * 100 : 0}%` }} />

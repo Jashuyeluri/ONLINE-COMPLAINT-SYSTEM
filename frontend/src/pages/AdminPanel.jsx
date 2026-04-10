@@ -104,7 +104,7 @@ const AdminPanel = () => {
   };
 
   return (
-    <div className="space-y-10 animate-fade-in lg:ml-72 pt-24 pb-20 px-8">
+    <div className="space-y-10 animate-fade-in ">
       <header className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
            <div className="flex items-center gap-2 mb-3">
@@ -119,7 +119,7 @@ const AdminPanel = () => {
         </div>
         <button 
           onClick={handleExport}
-          className="bg-slate-900 hover:bg-black text-white px-6 py-3.5 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all shadow-xl shadow-slate-200 text-sm"
+          className="bg-slate-900 hover:bg-black text-white py-3.5 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all shadow-xl shadow-slate-200 text-sm"
         >
           <Download className="w-4 h-4" />
           Export PDF
@@ -144,17 +144,17 @@ const AdminPanel = () => {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="border-b border-slate-50 bg-slate-50/50">
-                <th className="px-6 py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Report Details</th>
-                <th className="px-6 py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Submitted By</th>
-                <th className="px-6 py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Assigned Staff</th>
-                <th className="px-6 py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Status</th>
-                <th className="px-6 py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] text-right">Actions</th>
+                <th className="py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Report Details</th>
+                <th className="py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Submitted By</th>
+                <th className="py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Assigned Staff</th>
+                <th className="py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Status</th>
+                <th className="py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-50 font-medium">
               {filtered.map(c => (
                 <tr key={c._id} className="hover:bg-indigo-50/30 transition-colors group">
-                  <td className="px-6 py-5">
+                  <td className="py-5">
                     <div className="font-bold text-slate-900 group-hover:text-indigo-600 transition-colors mb-1">{c.title}</div>
                     <div className="flex items-center gap-2">
                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-tighter bg-slate-100 px-1.5 py-0.5 rounded leading-none">{c.category}</span>
@@ -167,7 +167,7 @@ const AdminPanel = () => {
                       </div>
                     )}
                   </td>
-                  <td className="px-6 py-5">
+                  <td className="py-5">
                     <div className="flex items-center gap-3">
                       <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center text-slate-600 font-black shadow-sm text-sm">
                         {c.createdBy?.name?.[0] || '?'}
@@ -178,7 +178,7 @@ const AdminPanel = () => {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-5">
+                  <td className="py-5">
                     {c.assignedTo ? (
                       <div className="flex items-center gap-2">
                         <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-teal-100 to-teal-200 flex items-center justify-center text-teal-700 font-black text-xs">
@@ -193,10 +193,10 @@ const AdminPanel = () => {
                       <span className="text-[11px] text-slate-300 italic font-bold">Not assigned</span>
                     )}
                   </td>
-                  <td className="px-6 py-5">
+                  <td className="py-5">
                     <StatusBadge status={c.status} />
                   </td>
-                  <td className="px-6 py-5">
+                  <td className="py-5">
                     <div className="flex items-center justify-end gap-1 opacity-60 group-hover:opacity-100 transition-opacity">
                       {/* Action buttons (hidden if resolved) */}
                       {c.status !== 'Resolved' && (

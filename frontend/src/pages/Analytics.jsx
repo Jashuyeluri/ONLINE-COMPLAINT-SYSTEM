@@ -45,7 +45,7 @@ const Analytics = () => {
   const maxDaily = Math.max(...dailyCounts, 1);
 
   return (
-    <div className="space-y-8 animate-fade-in lg:ml-72 pt-24 pb-20 px-8">
+    <div className="space-y-8 animate-fade-in ">
       <header>
         <div className="flex items-center gap-2 mb-2">
           <span className="w-8 h-[2px] bg-indigo-600" />

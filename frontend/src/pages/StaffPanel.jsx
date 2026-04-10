@@ -65,7 +65,7 @@ const StaffPanel = () => {
   };
 
   return (
-    <div className="space-y-8 animate-fade-in lg:ml-72 pt-24 pb-20 px-8">
+    <div className="space-y-8 animate-fade-in ">
       <header>
         <div className="flex items-center gap-2 mb-2">
           <span className="w-8 h-[2px] bg-indigo-600" />
@@ -182,7 +182,7 @@ const StaffPanel = () => {
                       <button
                         onClick={() => handleComplete(c._id)}
                         disabled={submitting}
-                        className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-2xl font-bold flex items-center gap-2 transition-all shadow-lg shadow-emerald-200 text-sm disabled:opacity-50"
+                        className="bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-2xl font-bold flex items-center gap-2 transition-all shadow-lg shadow-emerald-200 text-sm disabled:opacity-50"
                       >
                         <CheckCircle className="w-4 h-4" />
                         {submitting ? 'Submitting...' : 'Mark as Completed & Notify Admin'}

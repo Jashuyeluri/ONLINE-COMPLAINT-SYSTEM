@@ -83,7 +83,7 @@ const AdminQueries = () => {
     const statusConf = getStatusConfig(selectedQuery.status);
     const StatusIcon = statusConf.icon;
     return (
-      <div className="space-y-6 animate-fade-in lg:ml-72 pt-24 pb-20 px-8">
+      <div className="space-y-6 animate-fade-in ">
         <button onClick={() => setSelectedQuery(null)} className="flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-indigo-600 transition-colors">
           <ArrowLeft className="w-4 h-4" /> Back to all queries
         </button>
@@ -127,7 +127,7 @@ const AdminQueries = () => {
 
         {/* Thread */}
         <div className="bg-white/80 backdrop-blur-xl rounded-[32px] border border-slate-100 shadow-2xl shadow-indigo-500/5 overflow-hidden">
-          <div className="px-8 py-5 border-b border-slate-100">
+          <div className="py-5 border-b border-slate-100">
             <h3 className="font-black text-slate-900">Conversation Thread</h3>
             <p className="text-xs text-slate-400 font-medium">{selectedQuery.replies?.length || 0} replies</p>
           </div>
@@ -172,15 +172,15 @@ const AdminQueries = () => {
 
           {/* Reply Box */}
           {selectedQuery.status === 'Closed' ? (
-            <div className="px-6 py-4 border-t border-slate-100 bg-slate-50/50 text-center">
+            <div className="py-4 border-t border-slate-100 bg-slate-50/50 text-center">
               <p className="text-sm text-slate-400 font-bold">This query is closed. No further replies can be sent.</p>
             </div>
           ) : (selectedQuery.replies?.filter(r => r.repliedBy?.role === 'admin').length >= 1) ? (
-            <div className="px-6 py-4 border-t border-slate-100 bg-slate-50/50 text-center">
+            <div className="py-4 border-t border-slate-100 bg-slate-50/50 text-center">
               <p className="text-sm text-slate-400 font-bold">You have already replied to this query once. Further admin replies are restricted.</p>
             </div>
           ) : (
-            <form onSubmit={handleReply} className="px-6 py-4 border-t border-slate-100 bg-slate-50/50">
+            <form onSubmit={handleReply} className="py-4 border-t border-slate-100 bg-slate-50/50">
               <div className="flex items-center gap-3">
                 <input
                   type="text"
@@ -206,7 +206,7 @@ const AdminQueries = () => {
 
   // ── LIST VIEW ──
   return (
-    <div className="space-y-8 animate-fade-in lg:ml-72 pt-24 pb-20 px-8">
+    <div className="space-y-8 animate-fade-in ">
       <header>
         <div className="flex items-center gap-2 mb-3">
           <span className="w-8 h-[2px] bg-indigo-600" />

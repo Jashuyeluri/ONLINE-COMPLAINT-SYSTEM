@@ -29,7 +29,7 @@ const ComplaintForm = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto pt-24 pb-20 px-6 animate-fade-in lg:ml-72">
+    <div className="max-w-3xl mx-auto animate-fade-in ">
       <header className="mb-12 relative">
         <div className="absolute -top-10 -left-10 w-40 h-40 bg-indigo-500/5 rounded-full blur-3xl -z-10 animate-subtle-float"></div>
         <div className="flex items-center gap-2 mb-3">

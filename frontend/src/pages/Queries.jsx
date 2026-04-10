@@ -73,7 +73,7 @@ const Queries = () => {
     const statusConf = getStatusConfig(selectedQuery.status);
     const StatusIcon = statusConf.icon;
     return (
-      <div className="space-y-6 animate-fade-in lg:ml-72 pt-24 pb-20 px-8">
+      <div className="space-y-6 animate-fade-in ">
         <button onClick={() => setSelectedQuery(null)} className="flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-indigo-600 transition-colors">
           <ArrowLeft className="w-4 h-4" /> Back to queries
         </button>
@@ -99,7 +99,7 @@ const Queries = () => {
 
         {/* Thread */}
         <div className="bg-white/80 backdrop-blur-xl rounded-[32px] border border-slate-100 shadow-2xl shadow-indigo-500/5 overflow-hidden">
-          <div className="px-8 py-5 border-b border-slate-100">
+          <div className="py-5 border-b border-slate-100">
             <h3 className="font-black text-slate-900">Conversation Thread</h3>
             <p className="text-xs text-slate-400 font-medium">{selectedQuery.replies?.length || 0} replies</p>
           </div>
@@ -145,7 +145,7 @@ const Queries = () => {
 
           {/* Reply Box */}
           {selectedQuery.status !== 'Closed' && (
-            <form onSubmit={handleReply} className="px-6 py-4 border-t border-slate-100 bg-slate-50/50">
+            <form onSubmit={handleReply} className="py-4 border-t border-slate-100 bg-slate-50/50">
               <div className="flex items-center gap-3">
                 <input
                   type="text"
@@ -165,7 +165,7 @@ const Queries = () => {
             </form>
           )}
           {selectedQuery.status === 'Closed' && (
-            <div className="px-6 py-4 border-t border-slate-100 bg-slate-50/50 text-center">
+            <div className="py-4 border-t border-slate-100 bg-slate-50/50 text-center">
               <p className="text-sm text-slate-400 font-bold">This query has been closed by admin.</p>
             </div>
           )}
@@ -176,7 +176,7 @@ const Queries = () => {
 
   // ── LIST VIEW ──
   return (
-    <div className="space-y-8 animate-fade-in lg:ml-72 pt-24 pb-20 px-8">
+    <div className="space-y-8 animate-fade-in ">
       <header className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
           <div className="flex items-center gap-2 mb-3">
@@ -190,7 +190,7 @@ const Queries = () => {
         </div>
         <button
           onClick={() => setShowNewForm(true)}
-          className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3.5 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all shadow-xl shadow-indigo-200 text-sm"
+          className="bg-indigo-600 hover:bg-indigo-700 text-white py-3.5 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all shadow-xl shadow-indigo-200 text-sm"
         >
           <Plus className="w-4 h-4" /> New Query
         </button>

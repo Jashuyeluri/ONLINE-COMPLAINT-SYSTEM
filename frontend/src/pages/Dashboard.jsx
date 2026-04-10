@@ -46,7 +46,7 @@ const Dashboard = () => {
   });
 
   return (
-    <div className="space-y-10 animate-fade-in lg:ml-72 pt-24 pb-20 px-8">
+    <div className="space-y-10 animate-fade-in ">
       <header className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
           <div className="flex items-center gap-2 mb-2">
@@ -128,7 +128,7 @@ const Dashboard = () => {
             <Inbox className="w-10 h-10 text-slate-300" />
           </div>
           <h3 className="text-2xl font-black text-slate-800 tracking-tight">No Reports Found</h3>
-          <p className="text-slate-400 mt-2 max-w-sm mx-auto font-medium px-6">
+          <p className="text-slate-400 mt-2 max-w-sm mx-auto font-medium ">
             We couldn't find any complaints matching your current filters. Try adjusting your search.
           </p>
         </div>

@@ -15,7 +15,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="space-y-8 animate-fade-in lg:ml-72 pt-24 pb-20 px-8 max-w-3xl">
+    <div className="space-y-8 animate-fade-in max-w-3xl mx-auto w-full">
       <header>
         <div className="flex items-center gap-2 mb-2">
           <span className="w-8 h-[2px] bg-indigo-600" />

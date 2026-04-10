@@ -28,7 +28,7 @@ const MyComplaints = () => {
   const statusSteps = ['Pending', 'In Progress', 'Resolved'];
 
   return (
-    <div className="space-y-8 animate-fade-in lg:ml-72 pt-24 pb-20 px-8">
+    <div className="space-y-8 animate-fade-in ">
       <header>
         <div className="flex items-center gap-2 mb-2">
           <span className="w-8 h-[2px] bg-indigo-600" />
@@ -90,7 +90,7 @@ const MyComplaints = () => {
               </div>
 
               {expanded === c._id && (
-                <div className="px-6 pb-6 border-t border-slate-50">
+                <div className="pb-6 border-t border-slate-50">
                   {/* Progress Timeline */}
                   <div className="mt-5 mb-5">
                     <p className="text-xs font-black text-slate-400 uppercase tracking-wider mb-4">Progress Timeline</p>
