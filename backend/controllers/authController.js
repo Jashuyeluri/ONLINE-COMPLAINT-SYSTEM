@@ -101,7 +101,8 @@ exports.login = async (req, res) => {
 exports.updateProfile = async (req, res) => {
   try {
     const { name, email, password } = req.body;
-    let user = await require('../models/User').findById(req.user.id);
+    const userId = req.user.id || req.user.user?.id;
+    let user = await require('../models/User').findById(userId);
     if (!user) return res.status(404).json({ message: 'User not found' });
 
     if (email && email !== user.email) {
@@ -118,9 +119,7 @@ exports.updateProfile = async (req, res) => {
     }
     await user.save();
 
-    const payload = { user: { id: user.id, role: user.role } };
-    const jwt = require('jsonwebtoken');
-    const token = jwt.sign(payload, process.env.JWT_SECRET || 'supersecretjwtkey_12345', { expiresIn: '1d' });
+    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET || 'supersecretjwtkey_12345', { expiresIn: '1d' });
     res.json({ token, user: { id: user._id, name: user.name, email: user.email, role: user.role } });
   } catch (err) {
     res.status(500).json({ message: err.message });
