@@ -52,25 +52,25 @@ const UserManagement = () => {
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm flex items-center gap-4">
-          <div className="bg-indigo-50 text-indigo-600 p-4 rounded-2xl"><Users className="w-6 h-6" /></div>
-          <div>
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Active</p>
-            <p className="text-3xl font-black text-slate-900">{loading ? '—' : totalUsers}</p>
+        <div className="bg-white rounded-3xl p-4 sm:p-6 border border-slate-100 shadow-sm flex items-center gap-3 sm:gap-4 overflow-hidden">
+          <div className="bg-indigo-50 text-indigo-600 p-3 sm:p-4 rounded-xl sm:rounded-2xl flex-shrink-0"><Users className="w-5 h-5 sm:w-6 sm:h-6" /></div>
+          <div className="min-w-0 flex-1">
+            <p className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wide sm:tracking-wider truncate" title="Total Active">Total Active</p>
+            <p className="text-2xl sm:text-3xl font-black text-slate-900">{loading ? '—' : totalUsers}</p>
           </div>
         </div>
-        <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm flex items-center gap-4">
-          <div className="bg-blue-50 text-blue-600 p-4 rounded-2xl"><UserCheck className="w-6 h-6" /></div>
-          <div>
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Citizens</p>
-            <p className="text-3xl font-black text-slate-900">{loading ? '—' : citizenCount}</p>
+        <div className="bg-white rounded-3xl p-4 sm:p-6 border border-slate-100 shadow-sm flex items-center gap-3 sm:gap-4 overflow-hidden">
+          <div className="bg-blue-50 text-blue-600 p-3 sm:p-4 rounded-xl sm:rounded-2xl flex-shrink-0"><UserCheck className="w-5 h-5 sm:w-6 sm:h-6" /></div>
+          <div className="min-w-0 flex-1">
+            <p className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wide sm:tracking-wider truncate" title="Citizens">Citizens</p>
+            <p className="text-2xl sm:text-3xl font-black text-slate-900">{loading ? '—' : citizenCount}</p>
           </div>
         </div>
-        <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm flex items-center gap-4">
-          <div className="bg-teal-50 text-teal-600 p-4 rounded-2xl"><Wrench className="w-6 h-6" /></div>
-          <div>
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Staff</p>
-            <p className="text-3xl font-black text-slate-900">{loading ? '—' : staffCount}</p>
+        <div className="bg-white rounded-3xl p-4 sm:p-6 border border-slate-100 shadow-sm flex items-center gap-3 sm:gap-4 overflow-hidden">
+          <div className="bg-teal-50 text-teal-600 p-3 sm:p-4 rounded-xl sm:rounded-2xl flex-shrink-0"><Wrench className="w-5 h-5 sm:w-6 sm:h-6" /></div>
+          <div className="min-w-0 flex-1">
+            <p className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wide sm:tracking-wider truncate" title="Staff">Staff</p>
+            <p className="text-2xl sm:text-3xl font-black text-slate-900">{loading ? '—' : staffCount}</p>
           </div>
         </div>
       </div>

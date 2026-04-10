@@ -69,13 +69,13 @@ const Dashboard = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
         {stats.map((stat, i) => (
-          <div key={i} className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm flex items-center gap-5 hover:shadow-md transition-all duration-300">
-            <div className={`${stat.bg} ${stat.color} p-4 rounded-2xl`}>
-              <stat.icon className="w-6 h-6" />
+          <div key={i} className="bg-white rounded-3xl p-4 sm:p-6 border border-slate-100 shadow-sm flex items-center gap-3 sm:gap-5 hover:shadow-md transition-all duration-300 overflow-hidden">
+            <div className={`${stat.bg} ${stat.color} p-3 sm:p-4 rounded-xl sm:rounded-2xl flex-shrink-0`}>
+              <stat.icon className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
-            <div>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">{stat.label}</p>
-              <p className="text-2xl font-black text-slate-900">{stat.value}</p>
+            <div className="min-w-0 flex-1">
+              <p className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wide sm:tracking-wider truncate" title={stat.label}>{stat.label}</p>
+              <p className="text-xl sm:text-2xl font-black text-slate-900">{stat.value}</p>
             </div>
           </div>
         ))}

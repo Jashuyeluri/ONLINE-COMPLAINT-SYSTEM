@@ -65,13 +65,13 @@ const Analytics = () => {
           { label: 'In Progress', value: inProgress, icon: Clock, color: 'text-blue-600', bg: 'bg-blue-50' },
           { label: 'Resolved', value: resolved, icon: CheckCircle2, color: 'text-emerald-600', bg: 'bg-emerald-50' },
         ].map((stat, i) => (
-          <div key={i} className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm flex items-center gap-4">
-            <div className={`${stat.bg} ${stat.color} p-4 rounded-2xl`}>
-              <stat.icon className="w-6 h-6" />
+          <div key={i} className="bg-white rounded-3xl p-4 sm:p-6 border border-slate-100 shadow-sm flex items-center gap-3 sm:gap-4 overflow-hidden">
+            <div className={`${stat.bg} ${stat.color} p-3 sm:p-4 rounded-xl sm:rounded-2xl flex-shrink-0`}>
+              <stat.icon className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
-            <div>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">{stat.label}</p>
-              <p className="text-3xl font-black text-slate-900">{loading ? '—' : stat.value}</p>
+            <div className="min-w-0 flex-1">
+              <p className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wide sm:tracking-wider truncate" title={stat.label}>{stat.label}</p>
+              <p className="text-2xl sm:text-3xl font-black text-slate-900">{loading ? '—' : stat.value}</p>
             </div>
           </div>
         ))}
