@@ -15,7 +15,6 @@ const NotificationsPage = () => {
     try {
       const res = await api.get('/notifications');
       setNotifications(res.data);
-      await api.put('/notifications/mark-read');
     } finally {
       setLoading(false);
     }
@@ -37,10 +36,26 @@ const NotificationsPage = () => {
     return <AlertCircle className="w-5 h-5 text-amber-500" />;
   };
 
-  const getBg = (msg) => {
-    if (msg.includes('Resolved')) return 'bg-emerald-50 border-emerald-100';
-    if (msg.includes('In Progress')) return 'bg-blue-50 border-blue-100';
-    return 'bg-amber-50 border-amber-100';
+  const getBg = (msg, isRead) => {
+    if (!isRead) {
+      if (msg.includes('Resolved')) return 'bg-emerald-100 border-emerald-300 shadow-md ring-2 ring-emerald-500/20';
+      if (msg.includes('In Progress')) return 'bg-blue-100 border-blue-300 shadow-md ring-2 ring-blue-500/20';
+      return 'bg-amber-100 border-amber-300 shadow-md ring-2 ring-amber-500/20';
+    }
+    // Read state colors
+    if (msg.includes('Resolved')) return 'bg-emerald-50 border-emerald-100 opacity-60';
+    if (msg.includes('In Progress')) return 'bg-blue-50 border-blue-100 opacity-60';
+    return 'bg-amber-50 border-amber-100 opacity-60';
+  };
+
+  const markAllRead = async () => {
+    try {
+      await api.put('/notifications/mark-read');
+      setNotifications(notifications.map(n => ({ ...n, isRead: true })));
+      toast.success('All notifications marked as read');
+    } catch (err) {
+      toast.error('Failed to mark notifications as read');
+    }
   };
 
   return (
@@ -70,21 +85,25 @@ const NotificationsPage = () => {
             <div className="flex items-center justify-between">
               <p className="text-sm font-bold text-slate-500">{notifications.length} notification{notifications.length !== 1 ? 's' : ''}</p>
               <div className="flex items-center gap-3">
-                <span className="flex items-center gap-1.5 text-xs text-slate-400 font-bold">
-                  <CheckCheck className="w-4 h-4" /> All marked as read
-                </span>
+                <button 
+                  onClick={markAllRead}
+                  className="flex items-center gap-1.5 text-xs text-indigo-600 font-bold hover:text-indigo-800 transition-colors bg-indigo-50 px-3 py-1.5 rounded-xl hover:bg-indigo-100"
+                >
+                  <CheckCheck className="w-4 h-4" /> Mark as read
+                </button>
                 <div className="w-1 h-3 border-r border-slate-200"></div>
                 <button 
                   onClick={clearAll}
-                  className="flex items-center gap-1.5 text-xs text-red-500 font-bold hover:text-red-700 transition-colors"
+                  className="flex items-center gap-1.5 text-xs text-red-500 font-bold hover:text-red-700 transition-colors bg-red-50 px-3 py-1.5 rounded-xl hover:bg-red-100"
                 >
                   <Trash2 className="w-4 h-4" /> Clear All
                 </button>
               </div>
             </div>
             {notifications.map(n => (
-              <div key={n._id} className={`flex items-start gap-4 p-5 rounded-3xl border ${getBg(n.message)} transition-all`}>
-                <div className="w-10 h-10 rounded-2xl bg-white flex items-center justify-center shadow-sm flex-shrink-0">
+              <div key={n._id} className={`flex items-start gap-4 p-5 rounded-3xl border ${getBg(n.message, n.isRead)} transition-all relative overflow-hidden`}>
+                {!n.isRead && <div className="absolute left-0 top-0 bottom-0 w-1 bg-indigo-500" />}
+                <div className={`w-10 h-10 rounded-2xl flex items-center justify-center shadow-sm flex-shrink-0 ${!n.isRead ? 'bg-white' : 'bg-slate-100 opacity-80'}`}>
                   {getIcon(n.message)}
                 </div>
                 <div className="flex-1">
