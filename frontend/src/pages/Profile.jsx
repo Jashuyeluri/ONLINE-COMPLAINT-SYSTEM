@@ -8,6 +8,8 @@ const Profile = () => {
   const { user, login } = useAuth();
   const [saved, setSaved] = useState(false);
   const [formData, setFormData] = useState({ name: user?.name || '', email: user?.email || '' });
+  const [password, setPassword] = useState('');
+  const [passSaved, setPassSaved] = useState(false);
 
   const handleSave = async (e) => {
     e.preventDefault();
@@ -19,6 +21,24 @@ const Profile = () => {
       setTimeout(() => setSaved(false), 3000);
     } catch (err) {
       toast.error(err.response?.data?.message || 'Failed to update profile');
+    }
+  };
+
+  const handlePasswordSave = async (e) => {
+    e.preventDefault();
+    if (password.length < 8) {
+      toast.error('Password must be at least 8 characters');
+      return;
+    }
+    try {
+      const res = await api.put('/auth/profile', { password });
+      login(res.data.token, res.data.user);
+      setPassSaved(true);
+      setPassword('');
+      toast.success('Password securely updated!');
+      setTimeout(() => setPassSaved(false), 3000);
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Failed to change password');
     }
   };
 
@@ -86,9 +106,19 @@ const Profile = () => {
       {/* Password Section */}
       <div className="bg-white/80 backdrop-blur-xl rounded-[32px] border border-slate-100 shadow-lg p-8 space-y-5">
         <h3 className="text-lg font-black text-slate-900 flex items-center gap-2"><Key className="w-5 h-5 text-indigo-600" /> Security</h3>
-        <div className="p-4 bg-amber-50 border border-amber-100 rounded-2xl text-sm font-medium text-amber-700">
-          🔒 Password changes are handled securely via your administrator. Contact <strong>admin@city.com</strong> to request a reset.
-        </div>
+        <form onSubmit={handlePasswordSave} className="space-y-5">
+          <div>
+            <label className="block text-sm font-bold text-slate-700 mb-2">New Password</label>
+            <div className="relative">
+              <Key className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+              <input type="password" placeholder="Enter new password (min. 8 characters)" value={password} onChange={e => setPassword(e.target.value)} className="w-full pl-12 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 font-medium text-slate-700 transition-all" />
+            </div>
+          </div>
+          <button type="submit" className="bg-slate-900 hover:bg-black text-white w-full py-4 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all shadow-xl shadow-slate-200">
+            {passSaved ? <CheckCircle className="w-5 h-5" /> : <Save className="w-5 h-5" />}
+            {passSaved ? 'Password Updated!' : 'Update Password'}
+          </button>
+        </form>
       </div>
     </div>
   );

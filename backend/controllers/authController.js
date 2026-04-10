@@ -100,7 +100,7 @@ exports.login = async (req, res) => {
 
 exports.updateProfile = async (req, res) => {
   try {
-    const { name, email } = req.body;
+    const { name, email, password } = req.body;
     let user = await require('../models/User').findById(req.user.id);
     if (!user) return res.status(404).json({ message: 'User not found' });
 
@@ -111,6 +111,11 @@ exports.updateProfile = async (req, res) => {
       user.email = email;
     }
     if (name) user.name = name;
+    if (password && password.length >= 8) {
+      user.password = password;
+    } else if (password) {
+      return res.status(400).json({ message: 'Password must be at least 8 characters long' });
+    }
     await user.save();
 
     const payload = { user: { id: user.id, role: user.role } };
