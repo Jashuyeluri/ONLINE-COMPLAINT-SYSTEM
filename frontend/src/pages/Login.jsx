@@ -13,6 +13,12 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/i.test(formData.email)) {
+      setError("Please put a valid @gmail.com email address");
+      toast.error("Invalid Email config");
+      return;
+    }
+    
     try {
       const res = await api.post('/auth/login', formData);
       login(res.data.token, res.data.user);

@@ -13,6 +13,19 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Explicit Validation
+    if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/i.test(formData.email)) {
+      setError("Please use a valid @gmail.com email address");
+      toast.error("Invalid Email format");
+      return;
+    }
+    if (formData.password.length < 8) {
+      setError("Password must be at least 8 characters long");
+      toast.error("Password too weak");
+      return;
+    }
+
     try {
       const res = await api.post('/auth/register', formData);
       login(res.data.token, res.data.user);

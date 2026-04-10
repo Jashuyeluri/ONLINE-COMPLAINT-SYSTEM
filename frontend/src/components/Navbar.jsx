@@ -142,7 +142,7 @@ const Navbar = ({ onMenuClick }) => {
 
               {/* Dropdown */}
               {showDropdown && (
-                <div className="absolute right-0 top-12 w-80 bg-white/95 backdrop-blur-xl border border-slate-100 rounded-3xl shadow-2xl shadow-slate-200/60 z-50 overflow-hidden">
+                <div className="fixed top-20 right-4 left-4 md:absolute md:top-12 md:right-0 md:left-auto md:w-80 bg-white/95 backdrop-blur-xl border border-slate-100 rounded-3xl shadow-2xl shadow-slate-200/60 z-50 overflow-hidden">
                   <div className="p-4 border-b border-slate-50 flex items-center justify-between">
                     <div>
                       <h3 className="font-black text-slate-900 text-sm">Notifications</h3>
